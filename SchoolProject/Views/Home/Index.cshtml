@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<br /><br />
+    <h1 style="font-family:Verdana; color: #4d4d4d">
+        Welcome to my school project! If you want to see all the classes, please click
+        @Html.ActionLink("here", "GetClasses", "Class"). :)
+    </h1>
+
+    @*<div id="Show" style="display:none">
+        @Html.Partial("~/Views/Class/GetClasses.cshtml")
+
+    </div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btn").click(function () {
+                $("#Show").toggle();
+            });
+        });
+    </script>
+}*@

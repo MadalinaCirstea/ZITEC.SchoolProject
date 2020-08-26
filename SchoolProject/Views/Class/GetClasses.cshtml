@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Data.Models.Class>
+<br />
+<br />
+<div class="row" style="font-family:Verdana;">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <br />
+
+        <p>
+            <div>
+                <input type="button" id="btn" class="btn btn-outline-dark" value="Create New">
+            </div>
+            <div id="Show" style="display:none">
+                @Html.Partial("~/Views/Class/AddClass.cshtml", new SchoolProject.Models.Classes.ClassViewModel())
+            </div>
+        </p>
+
+        <br />
+        <table class="table table-borderless" style="font-family:Verdana;">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-link" onclick="location.href='@Url.Action("GetAllStudentsByClass", "Student", new { id = item.Id })'">@item.Name</button>
+                    </td>
+                    <td>
+                        <button id="button" class="btn btn-outline-info" onclick="showhide()">Edit</button>
+                        <div id="ShowHide" style="display:none">
+                            @{Html.RenderAction("EditClass", "Class", new { id = item.Id });}
+                        </div>
+                        <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("DeleteClass", "Class", new { id = item.Id })'">Delete</button>
+
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btn").click(function () {
+                $("#Show").toggle();
+            });
+        });
+    </script>
+    <script>
+        function showhide() {
+            var div = document.getElementById("ShowHide");
+            if (div.style.display !== "none") {
+                div.style.display = "none";
+            }
+            else {
+                div.style.display = "block";
+            }
+        }
+    </script>
+}
